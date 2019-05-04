@@ -1,0 +1,174 @@
+#include "stdio.h"
+#include "stdint.h"
+
+typedef struct
+{
+	uint32_t pay,payda;
+}kesir_;
+
+kesir_ topla (kesir_,kesir_);
+kesir_ fark (kesir_,kesir_);
+kesir_ sadelestir(kesir_);
+kesir_ carp(kesir_,kesir_);
+kesir_ bol(kesir_,kesir_);
+
+int main(void)
+{
+	kesir_ x = {6,3},y={4,3},z;
+	z = bol(x,y);
+	printf("%d/%d",z.pay,z.payda);
+	return -1;
+}
+
+kesir_ bol(kesir_ k1,kesir_ k2)
+{
+	kesir_ donecek_kesir;
+	donecek_kesir.pay = k1.pay*k2.payda;
+	donecek_kesir.payda = k2.payda*k2.pay;
+	donecek_kesir = sadelestir(donecek_kesir);
+	return donecek_kesir;
+}
+
+kesir_ carp (kesir_ k1,kesir_ k2)
+{
+	kesir_ donecek_kesir;
+	donecek_kesir.pay = k1.pay*k2.pay;
+	donecek_kesir.payda = k1.payda*k2.payda;
+	donecek_kesir = sadelestir(donecek_kesir);
+	return donecek_kesir;
+}
+kesir_ fark (kesir_ k1,kesir_ k2)
+{
+	uint32_t i;
+	kesir_ donecek_kesir;
+	donecek_kesir.pay = k2.payda*k1.pay-k1.pay+k2.payda;
+	donecek_kesir.payda = k1.payda*k2.payda;
+	donecek_kesir = sadelestir(donecek_kesir);
+	return donecek_kesir;
+}
+
+kesir_ topla (kesir_ k1,kesir_ k2)
+{
+	uint32_t i;
+	kesir_ donecek_kesir;
+	donecek_kesir.pay = k2.payda*k1.pay+k1.payda*k2.pay;
+	donecek_kesir.payda = k1.payda*k2.payda;
+	donecek_kesir = sadelestir(donecek_kesir);
+	return donecek_kesir;
+}
+
+kesir_ sadelestir(kesir_ donecek_kesir)
+{
+	uint32_t i;
+	if(donecek_kesir.pay>0&&donecek_kesir.payda>0)
+		{
+			if(donecek_kesir.pay<donecek_kesir.payda)
+			{
+				for(i=2;i<=donecek_kesir.pay;i++)
+			{
+				if(donecek_kesir.pay%i == 0&&donecek_kesir.payda%i == 0)
+	            	{
+		                donecek_kesir.pay/=i;donecek_kesir.payda/=i;
+	                }
+			}
+			}
+			else
+			{
+				for(i=2;i<=donecek_kesir.payda;i++)
+			{
+				if(donecek_kesir.pay%i == 0&&donecek_kesir.payda%i == 0)
+	            	{
+		                donecek_kesir.pay/=i;donecek_kesir.payda/=i;
+	                }
+			}
+			}
+		}
+	else if(donecek_kesir.pay>0&&donecek_kesir.payda<0)
+	{
+		donecek_kesir.payda = -donecek_kesir.payda;
+		if(donecek_kesir.pay>0&&donecek_kesir.payda>0)
+		{
+			if(donecek_kesir.pay<donecek_kesir.payda)
+			{
+				for(i=2;i<=donecek_kesir.pay;i++)
+			{
+				if(donecek_kesir.pay%i == 0&&donecek_kesir.payda%i == 0)
+	            	{
+		                donecek_kesir.pay/=i;donecek_kesir.payda/=i;
+	                }
+			}
+			}
+			else
+			{
+				for(i=2;i<=donecek_kesir.payda;i++)
+			{
+				if(donecek_kesir.pay%i == 0&&donecek_kesir.payda%i == 0)
+	            	{
+		                donecek_kesir.pay/=i;donecek_kesir.payda/=i;
+	                }
+			}
+			}
+		}
+		donecek_kesir.payda = -donecek_kesir.payda;
+	}
+	else if(donecek_kesir.pay<0&&donecek_kesir.payda>0)
+	{
+		donecek_kesir.pay = -donecek_kesir.pay;
+		if(donecek_kesir.pay>0&&donecek_kesir.payda>0)
+		{
+			if(donecek_kesir.pay<donecek_kesir.payda)
+			{
+				for(i=2;i<=donecek_kesir.pay;i++)
+			{
+				if(donecek_kesir.pay%i == 0&&donecek_kesir.payda%i == 0)
+	            	{
+		                donecek_kesir.pay/=i;donecek_kesir.payda/=i;
+	                }
+			}
+			}
+			else
+			{
+				for(i=2;i<=donecek_kesir.payda;i++)
+			{
+				if(donecek_kesir.pay%i == 0&&donecek_kesir.payda%i == 0)
+	            	{
+		                donecek_kesir.pay/=i;donecek_kesir.payda/=i;
+	                }
+			}
+			}
+		}
+		donecek_kesir.pay = -donecek_kesir.pay;
+	}
+	else
+	{
+		if(-donecek_kesir.pay>0&&-donecek_kesir.payda>0)
+		{
+			donecek_kesir.pay = -donecek_kesir.pay;
+			donecek_kesir.payda = -donecek_kesir.payda;
+			if(donecek_kesir.pay<donecek_kesir.payda)
+			{
+				for(i=2;i<=donecek_kesir.pay;i++)
+			{
+				if(donecek_kesir.pay%i == 0&&donecek_kesir.payda%i == 0)
+	            	{
+		                donecek_kesir.pay/=i;donecek_kesir.payda/=i;
+	                }
+			}
+			}
+			else
+			{
+				for(i=2;i<=donecek_kesir.payda;i++)
+			{
+				if(donecek_kesir.pay%i == 0&&donecek_kesir.payda%i == 0)
+	            	{
+		                donecek_kesir.pay/=i;donecek_kesir.payda/=i;
+	                }
+			}
+			}
+		}
+		donecek_kesir.pay = -donecek_kesir.pay;
+		donecek_kesir.payda = -donecek_kesir.payda;
+	}
+	
+	return donecek_kesir;
+}
